@@ -17,7 +17,7 @@ public class Grass : Terrain
         base.Generate(size: size);
 
         var limit = Mathf.FloorToInt(f: (float)size / 2);
-        var treecount = Mathf.FloorToInt(f:(float)size * treeProbability);
+        var treeCount = Mathf.FloorToInt(f:(float)size * treeProbability);
 
         //membuat daftar posisi yang masih kosong
         List<int> emptyPosition = new List<int>();
@@ -26,28 +26,34 @@ public class Grass : Terrain
             emptyPosition.Add(item: i);
         }
 
-        for(int i = 0; i < treecount; i++)
+        for(int i = 0; i < treeCount; i++)
         {
             //memilih posisi kosong secara random
-            var randomIndex = emptyPosition[index: Random.Range(minInclusive: 0, maxExclusive: emptyPosition.Count - 1)];
+            var randomIndex = Random.Range(minInclusive: 0, maxExclusive: emptyPosition.Count);
             var pos = emptyPosition[index:  randomIndex];
 
             //posisi yang terpilih hapus dari daftar posisi kosong
             emptyPosition.RemoveAt(index: randomIndex);
 
-            //pilih prefab pohon secara random
-            randomIndex = Random.Range(minInclusive: 0, maxExclusive: treePrefabList.Count);
-            var prefab = treePrefabList[index: randomIndex];
-
-            //set pohon ke posisi yang terpilih
-            var tree = Instantiate(original: prefab, parent: transform);
-            tree.transform.localPosition = new Vector3(x: pos, y: 0, z: 0);
-            
+            SpawnRandomTree(pos: pos) ;
               
         }
 
         // selalu ada pohon di ujung
-        var leftBoundaryTree = Instantiate(treePrefabList[0], transform);
+        SpawnRandomTree(pos: -limit - 1);
+        SpawnRandomTree(pos: limit + 1);
+
+    }
+
+    private void SpawnRandomTree(int pos)
+    {
+        //pilih prefab pohon secara random
+        var randomIndex = Random.Range(minInclusive: 0, maxExclusive: treePrefabList.Count);
+        var prefab = treePrefabList[index: randomIndex];
+
+        //set pohon ke posisi yang terpilih
+        var tree = Instantiate(original: prefab, parent: transform);
+        tree.transform.localPosition = new Vector3(x: pos, y: 0, z: 0);
     }
 
 }
