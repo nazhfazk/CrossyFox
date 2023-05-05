@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 6461159904709867154}
   - component: {fileID: 6461159904708867154}
   - component: {fileID: 6461159904712950834}
+  - component: {fileID: 7890537554727862745}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -125,9 +126,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6461159904706669202}
-  m_LocalRotation: {x: 0.000000021855698, y: -0.00000003774895, z: 8.250296e-16, w: 1}
-  m_LocalPosition: {x: -0.6003132, y: 0.9175728, z: 3.4063573}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6461159904706967216}
@@ -165,9 +166,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4add69fc6d74a5946ae4c9a81ed429ef, type: 2}
-  - {fileID: 2100000, guid: 5179a11c362457440a208aa2e368e795, type: 2}
-  - {fileID: 2100000, guid: 98f7409cb2311754790226154951b58b, type: 2}
+  - {fileID: 2100000, guid: 088fc383988975e4e8312fb397d46730, type: 2}
+  - {fileID: 2100000, guid: 088fc383988975e4e8312fb397d46730, type: 2}
+  - {fileID: 2100000, guid: 088fc383988975e4e8312fb397d46730, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -203,6 +204,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: d857dc8da4a0e2b4088a55b525d92cc8, type: 3}
+--- !u!114 &7890537554727862745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6461159904706669202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0380909494862049bbfc0490bc516ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
 --- !u!1 &6461159904706669204
 GameObject:
   m_ObjectHideFlags: 0

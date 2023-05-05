@@ -35,25 +35,29 @@ public class Grass : Terrain
             //posisi yang terpilih hapus dari daftar posisi kosong
             emptyPosition.RemoveAt(index: randomIndex);
 
-            SpawnRandomTree(pos: pos) ;
+            SpawnRandomTree(xPos: pos) ;
               
         }
 
         // selalu ada pohon di ujung
-        SpawnRandomTree(pos: -limit - 1);
-        SpawnRandomTree(pos: limit + 1);
+        SpawnRandomTree(xPos: -limit - 1);
+        SpawnRandomTree(xPos: limit + 1);
 
     }
 
-    private void SpawnRandomTree(int pos)
+    private void SpawnRandomTree(int xPos)
     {
         //pilih prefab pohon secara random
         var randomIndex = Random.Range(minInclusive: 0, maxExclusive: treePrefabList.Count);
         var prefab = treePrefabList[index: randomIndex];
 
         //set pohon ke posisi yang terpilih
-        var tree = Instantiate(original: prefab, parent: transform);
-        tree.transform.localPosition = new Vector3(x: pos, y: 0, z: 0);
+        var tree = Instantiate(
+            original: prefab, 
+            position: new Vector3(xPos, 0, this.transform.position.z), 
+            rotation: Quaternion.identity, 
+            parent: transform);
+
     }
 
 }

@@ -7,7 +7,15 @@ using UnityEngine.Events;
 public class Movement : MonoBehaviour
 {
     [SerializeField, Range(min: 0, max: 1)] float moveDuration = 0.1f;
+
     [SerializeField, Range(min: 0, max: 1)] float jumpHeight = 0.5f;
+
+    [SerializeField] int leftMovelimit;
+
+    [SerializeField] int rightMovelimit;
+
+    [SerializeField] int backMovelimit;
+
 
     public UnityEvent<Vector3> OnJumpEnd;
 
@@ -46,8 +54,20 @@ public class Movement : MonoBehaviour
 
     public void Move(Vector3 direction)
     {
+        var targetPosition = transform.position + direction;
+
+
+        if (targetPosition.x < leftMovelimit ||
+            targetPosition.x > rightMovelimit ||
+            targetPosition.z < backMovelimit ||
+            TreeStop.AllPositions.Contains(item: targetPosition))
+        {
+            targetPosition = transform.position;
+        }
+       
+
         transform.DOJump(
-            endValue: transform.position + direction, 
+            endValue: targetPosition,
             jumpPower: jumpHeight, 
             numJumps: 1, 
             duration: moveDuration)
@@ -56,6 +76,13 @@ public class Movement : MonoBehaviour
         transform.forward = direction;
     }
 
+    public void UpdateMoveLimit(int horizontalSize, int backLimit)
+    {
+        leftMovelimit = -horizontalSize / 2;
+        rightMovelimit = horizontalSize / 2;
+        backMovelimit = backLimit;
+
+    }
 
     private void BroadCastPosisionOnJumpEnd()
     {
